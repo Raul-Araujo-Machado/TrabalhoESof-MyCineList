@@ -11,6 +11,44 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="css/estilo.css"/><!--link css-->
 
+
+
+        <script rsc="text/javascript">
+        $(function() {
+            $("#meuform").submit(function(event){
+                event.preventDefault();
+
+                var dados_form = $(this).serialize();
+                $.ajax({
+                    type:"post",
+                    url:"../Controller/insereUsuario.php",
+                    data:dados_form,
+                    success: function(responseData){
+                        $("#mensagemDiv").html(""+responseData);
+                        document.getElementById('email').value = "";
+                        document.getElementById('nome').value = "";
+                        document.getElementById('senha').value = "";
+                       
+                        $().ready(function() {
+                            setTimeout(function () {
+                            $('#mensagemDiv').hide();
+                            }, 2500); 
+                        });
+                    },
+                    error: function(request,status,error){
+                        $("#mensagemDiv").html(""+responseText);
+                        $().ready(function() {
+                            setTimeout(function () {
+                            $('#mensagemDiv').hide();
+                            }, 2500);
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+
     </head>
     <body>
         <!--script do menu-->
@@ -25,7 +63,7 @@
                 <form class="form-horizontal" id="meuform" method="post" name="form" enctype="multipart/form-data" action="insereLixo.php"><br><br>
                 <fieldset>
                     <div class="panel panel-primary">
-                    <div class="panel-heading" id="alinhamentoCentro">Cadastro de Ususario</div>
+                    <div class="panel-heading" id="alinhamentoCentro">Cadastro de Usuário</div>
                         <div class="panel-body">
                         <!-- Text input-->
                         
@@ -49,9 +87,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-2 control-label" for="Nome">Senha <h11>*</h11></label>  
+                                <label class="col-md-2 control-label" for="senha">Senha <h11>*</h11></label>  
                                 <div class="col-md-5">
-                                    <input id="nome" name="senha" placeholder="Password" class="form-control input-md" required="" type="password">
+                                    <input id="senha" name="senha" placeholder="Password" class="form-control input-md" required="" type="password">
                                 </div>
                             </div>
 

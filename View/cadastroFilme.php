@@ -10,14 +10,50 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="css/estilo.css"/><!--link css-->
+        <script rsc="text/javascript">
+            $(function() {
+                $("#meuform").submit(function(event){
+                    event.preventDefault();
+
+                    var dados_form = $(this).serialize();
+                    $.ajax({
+                        type:"post",
+                        url:"../Controller/insereFilme.php",
+                        data:dados_form,
+                        success: function(responseData){
+                            $("#mensagemDiv").html(""+responseData);
+                            document.getElementById('titulo').value = "";
+                            document.getElementById('duracao').value = "";
+                            document.getElementById('produtora').value = "";
+                            document.getElementById('sinopse').value = "";
+                            
+                            $().ready(function() {
+                                setTimeout(function () {
+                                $('#mensagemDiv').hide();
+                                }, 2500); 
+                            });
+                        },
+                        error: function(request,status,error){
+                            $("#mensagemDiv").html(""+responseText);
+                            $().ready(function() {
+                                setTimeout(function () {
+                                $('#mensagemDiv').hide();
+                                }, 2500);
+                            });
+                        }
+                    });
+                });
+            });
+        </script>
+
+
+
 
     </head>
     <body>
-        <!--script do menu-->
         <?php
             include_once("barraNavegacao.php"); 
         ?>
-
         <div class="container">
             <div class="coluna col15">
                 <form class="form-horizontal" id="meuform" method="post" name="form" enctype="multipart/form-data" action="insereFilme.php"><br><br>
@@ -25,11 +61,10 @@
                         <div class="panel panel-primary">
                             <div class="panel-heading" id="alinhamentoCentro">Cadastro de Filme</div>
                                 <div class="panel-body">
-                                    <!-- Conteudo formulario-->
                                     <div class="form-group">
                                         <div>
                                             <center> 
-                                            <img id="imgPrev" class="addimagem"  src="../img/ico.png"><br><br>
+                                            <img id="imgPrev" class="addimagem" style="border-radius:20px" src='http://anakordelos.com/wp-content/uploads/2016/05/top-05-filmes-favoritos-da-vida.jpg'><br><br>
                                             <input  name="imagem" id="imagem"  type="file" class="btn btn-primary" onchange = "previewImagem()" />
                                             </center><br>  
                                         </div> 
@@ -52,17 +87,14 @@
                                             <input id="duracao" name="duracao" placeholder="Minutos" class="form-control input-md" required="" type="number">
                                         </div>
                                     </div>
-                                    <!-- si-->
+                                    <!-- sinopse-->
                                     <div class="form-group">
-                                        <label class="col-md-2 control-label" for="Nome">Sinopse <h11>*</h11></label>  
+                                        <label class="col-md-2 control-label" for="sinopse">Sinopse <h11>*</h11></label>  
                                         <div class="col-md-9">
-                                            <input id="nome" name="nome" placeholder="" class="form-control input-md" required="" type="text">
+                                            <input id="sinopse" name="sinopse" placeholder="" class="form-control input-md" required="" type="text">
                                         </div>
                                     </div>
-
-                                
-
-                                    <!-- Button (Double) -->
+                                    
                                 <div class="form-group">
                                     <label class="col-md-2 control-label" for="Cadastrar"></label>
                                     <div class="col-md-8">
@@ -70,7 +102,6 @@
                                         <button id="Cancelar" name="Cancelar" class="btn btn-danger" type="Reset">Cancelar</button>
                                     </div>
                                 </div>
-                                
                                     <div id="mensagemDiv"></div>
                                 </div>
                         </div>
@@ -79,7 +110,7 @@
             </div>
         </div><br><br>
 
-         <!--script rodapé-->
+         <!-- rodapé-->
         <?php
             include_once("rodape.php");
         ?>
@@ -87,19 +118,19 @@
 
     <script>
         function previewImagem() {
-        var imagem = document.getElementById('imagem').files[0];
-        var preview = document.getElementById('imgPrev');
-        var reader = new FileReader();
-            
-        reader.onloadend = function () {
-            preview.src = reader.result;
-        }
-            
-        if(imagem){
-            reader.readAsDataURL(imagem);
-        }else{
-            preview.src = "img/ico.png";
-        }
+            var imagem = document.getElementById('imagem').files[0];
+            var preview = document.getElementById('imgPrev');
+            var reader = new FileReader();
+                
+            reader.onloadend = function () {
+                preview.src = reader.result;
+            }
+                
+            if(imagem){
+                reader.readAsDataURL(imagem);
+            }else{
+                preview.src = "img/ico.png";
+            }
         }
     </script>
 </html>

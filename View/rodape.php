@@ -1,6 +1,6 @@
 
 <br>
-<footer class="footer" style="background: #2c2c2c"><br>
+<footer class="footer" ><br>
          <div class="container">
             <div class="row">
 	            
