@@ -62,18 +62,6 @@ class Banco{
 	    }
 	}
 
-    
-
-	/*function Logar($string_sql){
-	  $verifica = mysqli_query($this->connect,$string_sql);
-	  if (mysqli_num_rows($verifica)==0){
-	   return 0;
-	  }else{
-		return 1;
-	  }
-	  mysqli_close($this->connect);
-
-	}*/
 }
 
 ?>

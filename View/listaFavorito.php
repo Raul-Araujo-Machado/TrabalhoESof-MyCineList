@@ -31,7 +31,6 @@
                             $favoritotd = $("<td><button type='button' class='btn btn-danger' onclick = 'teste("+resultado[i].codigo+")' >Remover </button></td>");
 
 
-                           // $novotr.append($caminhotd);
                             $novotr.append($caminhotd);
                             $novotr.append($titulotd);
                             $novotr.append($produtoratd);
@@ -41,7 +40,7 @@
                           
                             $(tabela).append($novotr);
                         } 
-                        //se tiver retornado algum erro do banco de dados
+                     
                         },
                         error: function(request,status,error){
                             $("#mensagemDiv").html(""+responseText);

@@ -26,12 +26,6 @@ class Usuario{
             echo '<h4 style = "color: red">'.$r.'</h4>';
     }
 
-    /*function listaFavorito(){
-        $banco = new banco();
-        $string_sql = sprintf("select f.titulo, f.produtora, f.duração, f.sinopse from filme as f, ususario as u, favorito as t where f.codigo = t.codigo and u.email = t.email;");
-        $result = $banco->queryListaDados($string_sql);
-        return $result;
-    }*/
 
     public function getNome(){
         return $this->nome;
