@@ -4,3 +4,4 @@ O projeto MyCinelist consiste em um site de listas personalizadas de filmes. Par
 
 O projeto foi idealizado com a motivação de desenvolver um ecossistema para amantes de filmes compartilharem suas experiências, uma vez que acreditamos que, além de uma forma de entretenimento, o cinema tem um papel cultural e artístico muito importante para a sociedade.
 
+![image](https://user-images.githubusercontent.com/91128390/235216220-f62ea9c7-f188-4e63-96c9-3473afdfb4bb.png)
